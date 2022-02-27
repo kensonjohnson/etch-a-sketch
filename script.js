@@ -1,15 +1,24 @@
+//create a variable to manipulate the grid div
 const container = document.getElementById('grid');
 
-function makeRows(size) {
+//create a funtion that takes in a length to make a square grid
+function createGrid(size) {
+
+    //set the height and width of the grid using the given length 
     container.style.setProperty('--grid-rows', size);
     container.style.setProperty('--grid-cols', size);
-    for (c = 0; c < (size * size); c++) {
-        let cell = document.createElement("div");
-        cell.innerText = (c + 1);
-        container.appendChild(cell).className = "grid-square";
+
+    //create the squares within the grid and assign event listeners to each
+    for (i = 0; i < (size * size); i++) {
+        let square = document.createElement("div");
+        container.appendChild(square).className = "grid-square";
+        square.addEventListener('mouseover', changeBackground);
     };
 };
 
-makeRows(16, 16);
+//create a funtion that changes the background color of a square during mouseover event
+function changeBackground(e) {
+    e.target.style.backgroundColor = 'black';
+}
 
 createGrid(16);
